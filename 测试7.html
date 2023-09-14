@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Events</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        #search {
+            margin-bottom: 20px;
+        }
+
+        .content {
+            display: none;
+        }
+
+        .active {
+            display: table-row;
+        }
+
+        .bilingual {
+            font-size: 80%;
+            color: #555;
+        }
+    </style>
+    <script>
+        function showContent(id) {
+            var content = document.getElementsByClassName("content");
+            for (var i = 0; i < content.length; i++) {
+                content[i].classList.remove("active");
+            }
+
+            document.getElementById(id).classList.add("active");
+        }
+
+        function search() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("eventTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+        
+        function openEvent(eventId) {
+            showContent(eventId);
+        }
+    </script>
+</head>
+<body>
+    <h1>Sports Events</h1>
+    <div id="search">
+        <input type="text" id="searchInput" placeholder="Search for an event..." onkeyup="search()">
+    </div>
+    <table id="eventTable">
+        <tr>
+            <th>Event</th>
+            <th>Date</th>
+            <th>Time</th>
+        </tr>
+        <tr onclick="showContent('fencing')">
+            <td>
+                <a href="javascript:void(0);">Fencing</a>
+                <span class="bilingual">المبارزة</span>
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr onclick="showContent('cycling-track')">
+            <td>
+                <a href="javascript:void(0);">Cycling Track</a>
+                <span class="bilingual">دراجات السباق</span>
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr onclick="showContent('cycling-mountain-bike')">
+            <td>
+                <a href="javascript:void(0);">Cycling Mountain Bike</a>
+                <span class="bilingual">دراجات جبال السباق</span>
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr onclick="showContent('equestrian')">
+            <td>
+                <a href="javascript:void(0);">Equestrian</a>
+                <span class="bilingual">الفروسية</span>
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <!-- Add more categories as needed -->
+
+        <!-- Content for Fencing -->
+        <tr class="content" id="fencing">
+            <td colspan="3">
+                <!-- Add content for Fencing here -->
+            </td>
+        </tr>
+
+        <!-- Content for Cycling Track -->
+        <tr class="content" id="cycling-track">
+            <td colspan="3">
+                <!-- Add content for Cycling Track here -->
+            </td>
+        </tr>
+
+        <!-- Content for Cycling Mountain Bike -->
+        <tr class="content" id="cycling-mountain-bike">
+            <td colspan="3">
+                <!-- Add content for Cycling Mountain Bike here -->
+            </td>
+        </tr>
+
+        <!-- Content for Equestrian -->
+        <tr class="content" id="equestrian">
+            <td colspan="3">
+                <!-- Add content for Equestrian here -->
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
